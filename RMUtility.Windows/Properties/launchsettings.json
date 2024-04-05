@@ -1,0 +1,10 @@
+{
+	"profiles": {
+		"RMUtility.Windows (Unpackaged)": {
+			"commandName": "Project"
+		},
+		"RMUtility.Windows (Package)": {
+			"commandName": "MsixPackage"
+		}
+	}
+}
