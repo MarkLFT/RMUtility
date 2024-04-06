@@ -37,42 +37,40 @@ public sealed partial class MainPage : Page
                                 new Grid()
                                 .Children(
                                     new Grid()
-                                        .Visibility(Visibility.Collapsed)
                                         .Children(
                                             new TextBlock()
                                             .Text("Home")
                                             .FontSize(30)
-                                            .HorizontalAlignment(HorizontalAlignment.Center)),
+                                            .HorizontalAlignment(HorizontalAlignment.Center))
+                                        .Visibility(Visibility.Collapsed),
 
                                     new Grid()
-                                        .Visibility(Visibility.Collapsed)
                                         .Children(
                                             new TextBlock()
                                             .Text("Rates")
                                             .FontSize(30)
-                                            .HorizontalAlignment(HorizontalAlignment.Center)),
+                                            .HorizontalAlignment(HorizontalAlignment.Center))
+                                        .Visibility(Visibility.Collapsed),
 
                                     new Grid()
-                                        .Visibility(Visibility.Collapsed)
                                         .Children(
                                             new TextBlock()
                                             .Text("Settngs")
                                             .FontSize(30)
                                             .HorizontalAlignment(HorizontalAlignment.Center))
+                                        .Visibility(Visibility.Collapsed)
                                     ),
                                     new TabBar()
                                         .Grid(row: 1)
                                         .Name("Tabs")
+                                        .Style(Uno.Toolkit.UI.Markup.Theme.TabBar.Styles.Bottom)
                                         .VerticalAlignment(VerticalAlignment.Bottom)
                                         .Items(
                                             new TabBarItem()
-                                                .Style(StaticResource.Get<Style>("MaterialBottomTabBarItemStyle"))
                                                 .Icon(new SymbolIcon(Symbol.Home)),
                                             new TabBarItem()
-                                                .Style(StaticResource.Get<Style>("MaterialBottomTabBarItemStyle"))
                                                 .Icon(new SymbolIcon(Symbol.Contact)),
                                             new TabBarItem()
-                                                .Style(StaticResource.Get<Style>("MaterialBottomTabBarItemStyle"))
                                                 .Icon(new SymbolIcon(Symbol.Shop)))
                                )
                          )

@@ -1,11 +1,14 @@
+using Uno.Toolkit.UI.Material.Markup;
+
 namespace RMUtility;
 
 public sealed class AppResources : ResourceDictionary
 {
     public AppResources()
     {
-        // Load WinUI Resources
-        this.Build(r => r.Merged(
-            new XamlControlsResources()));
+        this.Build(r => r
+            .Merged(new XamlControlsResources())
+            .UseMaterialToolkit()
+        );
     }
 }
