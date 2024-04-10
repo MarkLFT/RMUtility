@@ -1,3 +1,5 @@
+using Uno.Toolkit.UI.Markup;
+
 namespace RMUtility;
 
 public class App : Application
@@ -8,11 +10,16 @@ public class App : Application
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
         var builder = this.CreateBuilder(args)
+
             .Configure(host => host
 #if DEBUG
+
                 // Switch to Development environment when running in DEBUG
                 .UseEnvironment(Environments.Development)
 #endif
+                .UseToolkit()
+                .UseToolkitNavigation()
+
                 .UseLogging(configure: (context, logBuilder) =>
                 {
                     // Configure log levels for different categories of logging
@@ -53,16 +60,18 @@ public class App : Application
                 .UseSerialization((context, services) => services
                     .AddContentSerializer(context)
                     .AddJsonTypeInfo(WeatherForecastContext.Default.IImmutableListWeatherForecast))
+
                 .UseHttp((context, services) => services
                     // Register HttpClient
 #if DEBUG
                     // DelegatingHandler will be automatically injected into Refit Client
-                    .AddTransient<DelegatingHandler, DebugHttpHandler>()
+                .AddTransient<DelegatingHandler, DebugHttpHandler>()
 #endif
-                    .AddSingleton<IWeatherCache, WeatherCache>()
-                    .AddRefitClient<IApiClient>(context))
+                .AddSingleton<IWeatherCache, WeatherCache>()
+                .AddRefitClient<IApiClient>(context))
+
                 .UseAuthentication(auth =>
-    auth.AddOidc(name: "OidcAuthentication")
+                                        auth.AddOidc(name: "OidcAuthentication")
                 )
                 .ConfigureServices((context, services) =>
                 {
@@ -80,16 +89,16 @@ public class App : Application
         Host = await builder.NavigateAsync<Shell>
             (initialNavigate: async (services, navigator) =>
             {
-                var auth = services.GetRequiredService<IAuthenticationService>();
-                var authenticated = await auth.RefreshAsync();
-                if (authenticated)
-                {
+                //var auth = services.GetRequiredService<IAuthenticationService>();
+                //var authenticated = await auth.RefreshAsync();
+                //if (authenticated)
+                //{
                     await navigator.NavigateViewModelAsync<MainModel>(this, qualifier: Qualifiers.Nested);
-                }
-                else
-                {
-                    await navigator.NavigateViewModelAsync<LoginModel>(this, qualifier: Qualifiers.Nested);
-                }
+                //}
+                //else
+                //{
+                //    await navigator.NavigateViewModelAsync<LoginModel>(this, qualifier: Qualifiers.Nested);
+                //}
             });
     }
 

@@ -7,7 +7,8 @@ public partial record MainModel
     public MainModel(
         IOptions<AppConfig> appInfo,
         IAuthenticationService authentication,
-        INavigator navigator)
+        INavigator navigator
+        )
     {
         _navigator = navigator;
         _authentication = authentication;

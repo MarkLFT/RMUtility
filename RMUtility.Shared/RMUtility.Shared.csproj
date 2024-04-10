@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <None Include="**\*" Exclude="obj\**;bin\**;*.csproj" />
+    <PackageReference Include="Uno.Extensions.Navigation.Toolkit.WinUI" />
+    <PackageReference Include="Uno.Toolkit.WinUI.Material.Markup" />
     <None Update="AppHead.xaml.cs" DependentUpon="AppHead.xaml" />
   </ItemGroup>
 </Project>
